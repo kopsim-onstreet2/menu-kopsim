@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Style menu -->
+    <link rel="stylesheet" href="menu.css">
+    <!-- icone feather -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    <!-- TITLLE -->
+    <title>Main Menu Kopi Simpang</title>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="logo">
+            <img src="image.jpng/logo Kopsim.jpeg">
+        </div>
+
+        <div class="title">
+            <h1>Menu <span>Kopsim</span></h1>
+            <p>Pilih menu favoritmu untuk menemani momen santaimu. Nikmati berbagai pilihan kopi dan minuman dengan cita
+                rasa yang pas.</p>
+        </div>
+
+        <button class="cart-button" onclick="openCart()"> 
+            <i data-feather="shopping-cart"></i>
+            <span id="cartCount">0</span>
+        </button>
+    </header>
+
+
+    <!-- MENU -->
+
+
+
+    <main class="container">
+        <span class="hero-label">
+            <i data-feather="coffee"></i>
+            <span>Coffee</span>
+        </span>
+        <div class="menu-grid" id="menuList">
+
+            <!-- MENU 1 -->
+            <div class="menu-card">
+
+                <img src="image.jpng/Aren Latte.jpeg" alt="Aren Latte">
+
+                <div class="menu-content">
+
+                    <span class="menu-category">
+                        Coffee
+                    </span>
+
+                    <h3>Aren Latte</h3>
+
+                    <div class="menu-bottom">
+
+                        <span class="price">
+                            Rp13.000
+                        </span>
+
+                        <button class="add-btn" onclick="addToCart('Aren Latte', 13000)">
+                            + Tambah
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- MENU 2 -->
+            <div class="menu-card">
+
+                <img src="image.jpng/Butterscotch.jpeg" alt="Butterscotch">
+
+                <div class="menu-content">
+
+                    <span class="menu-category">
+                        Coffee
+                    </span>
+
+                    <h3>Butterscotch</h3>
+
+                    <div class="menu-bottom">
+
+                        <span class="price">
+                            Rp13.000
+                        </span>
+
+                        <button class="add-btn" onclick="addToCart('Butterscotch', 13000)">
+                            + Tambah
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- MENU 3 -->
+            <div class="menu-card">
+
+                <img src="image.jpng/Salted Caramel.jpeg" alt="Salted Caramel">
+
+                <div class="menu-content">
+
+                    <span class="menu-category">
+                        Coffee
+                    </span>
+
+                    <h3>Salted Caramel</h3>
+
+                    <div class="menu-bottom">
+
+                        <span class="price">
+                            Rp13.000
+                        </span>
+
+                        <button class="add-btn" onclick="addToCart('Salted Caramel', 13000)">
+                            + Tambah
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- MENU 4 -->
+            <div class="menu-card">
+
+                <img src="image.jpng/Regal Coffee.jpeg" alt="Regal Coffee">
+
+                <div class="menu-content">
+
+                    <span class="menu-category">
+                        Coffee
+                    </span>
+
+                    <h3>Regal Coffee</h3>
+
+                    <div class="menu-bottom">
+
+                        <span class="price">
+                            Rp15.000
+                        </span>
+
+                        <button class="add-btn" onclick="addToCart('Regal Coffee', 15000)">
+                            + Tambah
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- MENU 5 -->
+            <div class="menu-card">
+
+                <img src="image.jpng/Spanish Coffee.jpeg" alt="Spanish Latte">
+
+                <div class="menu-content">
+
+                    <span class="menu-category">
+                        Coffee
+                    </span>
+
+                    <h3>Spanish Latte</h3>
+
+                    <div class="menu-bottom">
+
+                        <span class="price">
+                            Rp13.000
+                        </span>
+
+                        <button class="add-btn" onclick="addToCart('Spanish Latte', 13000)">
+                            + Tambah
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- MENU 6 -->
+            <div class="menu-card">
+
+                <img src="image.jpng/Huzelnut.jpeg" alt="Huzelnut">
+
+                <div class="menu-content">
+
+                    <span class="menu-category">
+                        Coffee
+                    </span>
+
+                    <h3>Huzelnut</h3>
+
+                    <div class="menu-bottom">
+
+                        <span class="price">
+                            Rp13.000
+                        </span>
+
+                        <button class="add-btn" onclick="addToCart('Huzelnut', 13000)">
+                            + Tambah
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- MENU 7 -->
+            <div class="menu-card">
+
+                <img src="image.jpng/Cappuccino.jpeg" alt="Cappuccino">
+
+                <div class="menu-content">
+
+                    <span class="menu-category">
+                        Coffee
+                    </span>
+
+                    <h3>Cappuccino</h3>
+
+                    <div class="menu-bottom">
+
+                        <span class="price">
+                            Rp13.000
+                        </span>
+
+                        <button class="add-btn" onclick="addToCart('Cappuccino', 13000)">
+                            + Tambah
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+    <main class="container">
+        <span class="hero-label">
+            <i data-feather="coffee"></i>
+            <span>NON Coffee</span>
+        </span>
+        <div class="menu-grid" id="menuList">
+
+            <!-- MENU 1 -->
+            <div class="menu-card">
+
+                <img src="image.jpng/Choco Milo.jpeg" alt="Choco Milo">
+
+                <div class="menu-content">
+
+                    <span class="menu-category">
+                        NON Coffee
+                    </span>
+
+                    <h3>Choco Milo</h3>
+
+                    <div class="menu-bottom">
+
+                        <span class="price">
+                            Rp13.000
+                        </span>
+
+                        <button class="add-btn" onclick="addToCart('Choco Milo', 13000)">
+                            + Tambah
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- MENU 2 -->
+             <div class="menu-card">
+
+                <img src="image.jpng/matcha.png" alt="Matcha">
+
+                <div class="menu-content">
+
+                    <span class="menu-category">
+                        NON Coffee
+                    </span>
+
+                    <h3>Matcha</h3>
+
+                    <div class="menu-bottom">
+
+                        <span class="price">
+                            Rp15.000
+                        </span>
+
+                        <button class="add-btn" onclick="addToCart('Matcha ', 15000)">
+                            + Tambah
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- MENU 3 -->
+             <div class="menu-card">
+
+                <img src="image.jpng/Red Velvet.jpeg" alt="Red Velvet">
+
+                <div class="menu-content">
+
+                    <span class="menu-category">
+                        NON Coffee
+                    </span>
+
+                    <h3>Red Velvet</h3>
+
+                    <div class="menu-bottom">
+
+                        <span class="price">
+                            Rp13.000
+                        </span>
+
+                        <button class="add-btn" onclick="addToCart('Red Velvet', 13000)">
+                            + Tambah
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- MENU 4 -->
+              <div class="menu-card">
+
+                <img src="image.jpng/taro.png" alt="Taro">
+
+                <div class="menu-content">
+
+                    <span class="menu-category">
+                        NON Coffee
+                    </span>
+
+                    <h3>Taro</h3>
+
+                    <div class="menu-bottom">
+
+                        <span class="price">
+                            Rp13.000
+                        </span>
+
+                        <button class="add-btn" onclick="addToCart('Taro', 13000)">
+                            + Tambah
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- MENU 5 -->
+             <div class="menu-card">
+
+                <img src="image.jpng/esteh.png" alt="Es Teh">
+
+                <div class="menu-content">
+
+                    <span class="menu-category">
+                        NON Coffee
+                    </span>
+
+                    <h3>Es Teh</h3>
+
+                    <div class="menu-bottom">
+
+                        <span class="price">
+                            Rp5.000
+                        </span>
+
+                        <button class="add-btn" onclick="addToCart('Es Teh', 5000)">
+                            + Tambah
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+    
+        </div>
+    </main>
+
+
+    <!-- OVERLAY -->
+
+    <div class="overlay" id="overlay" onclick="closeCart()">
+    </div>
+
+
+    <!-- CART -->
+
+    <aside class="cart-panel" id="cartPanel">
+
+        <div class="cart-header">
+
+            <h2>Pesanan Saya</h2>
+
+            <button class="close-cart" onclick="closeCart()">
+                ✕
+            </button>
+
+        </div>
+
+        <div id="cartItems">
+
+            <div class="empty-cart">
+                Belum ada pesanan.
+            </div>
+
+        </div>
+
+        <div class="cart-total">
+
+            <span>Total</span>
+
+            <span id="cartTotal">
+                Rp0
+            </span>
+
+        </div>
+
+
+        <div class="customer-form">
+
+            <label for="customerName">
+                Nama Pelanggan
+            </label>
+
+            <input type="text" id="customerName" placeholder="Masukkan nama">
+
+        </div>
+
+
+        <button class="order-btn" onclick="createOrder()">
+
+            Buat Pesanan
+
+        </button>
+
+    </aside>
+
+
+    <!-- RECEIPT -->
+
+    <div class="receipt-container" id="receiptContainer">
+
+        <div class="receipt" id="receipt">
+
+            <div class="receipt-header">
+
+                <h2>KOPSIM</h2>
+
+                <p>KOPI SIMPANG</p>
+
+                <p>Order Sheet</p>
+
+            </div>
+
+
+            <div class="receipt-info">
+
+                <div>
+                    No. Pesanan :
+                    <strong id="receiptNumber"></strong>
+                </div>
+
+                <div>
+                    Tanggal :
+                    <strong id="receiptDate"></strong>
+                </div>
+
+                <div>
+                    Nama :
+                    <strong id="receiptCustomer"></strong>
+                </div>
+
+            </div>
+
+
+            <div class="receipt-items" id="receiptItems">
+            </div>
+
+
+            <div class="receipt-total">
+
+                <span>TOTAL</span>
+
+                <span id="receiptTotal">
+                    Rp0
+                </span>
+
+            </div>
+
+
+            <div class="receipt-footer">
+
+                <p>
+                    Terima kasih sudah memesan ☕
+                </p>
+
+                <p>
+                    Kopsim - Kopi Simpang
+                </p>
+
+            </div>
+
+
+            <div class="receipt-actions">
+
+                <button class="print-btn" onclick="printReceipt()">
+
+                    🖨 Cetak
+
+                </button>
+
+                <button class="done-btn" onclick="closeReceipt()">
+
+                    Selesai
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="menu.js"></script>
+    <script>
+        feather.replace();
+    </script>
+
+</body>
+
+</html>
