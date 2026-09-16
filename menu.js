@@ -337,11 +337,193 @@ function createOrder() {
    CETAK
 ========================= */
 
-function printReceipt() {
+async function printReceipt() {
 
-    printReceipt()
+    // Ambil data dari struk
+    const customer =
+        document.getElementById("receiptCustomer").textContent || "Pelanggan";
+
+    const orderNumber =
+        document.getElementById("receiptNumber").textContent || "-";
+
+    const orderDate =
+        document.getElementById("receiptDate").textContent || "-";
+
+    const total =
+        document.getElementById("receiptTotal").textContent || "Rp0";
+
+
+    // Buat isi struk
+    const receipt = [
+
+        {
+            type: "text",
+            text: "KOPSIM",
+            align: "center",
+            bold: true,
+            size: "large"
+        },
+
+        {
+            type: "text",
+            text: "KOPI SIMPANG",
+            align: "center",
+            bold: true
+        },
+
+        {
+            type: "text",
+            text: "Order Sheet",
+            align: "center"
+        },
+
+        {
+            type: "feed",
+            lines: 1
+        },
+
+        {
+            type: "divider"
+        },
+
+        {
+            type: "text",
+            text: "No. Pesanan : " + orderNumber
+        },
+
+        {
+            type: "text",
+            text: "Tanggal     : " + orderDate
+        },
+
+        {
+            type: "text",
+            text: "Nama        : " + customer
+        },
+
+        {
+            type: "divider"
+        }
+    ];
+
+
+    // Masukkan semua barang dari cart
+    cart.forEach(item => {
+
+        const subtotal =
+            item.price * item.quantity;
+
+        receipt.push({
+
+            type: "row",
+
+            left:
+                item.name + " x" + item.quantity,
+
+            right:
+                formatRupiah(subtotal)
+                    .replace("Rp", "")
+                    .trim()
+        });
+
+    });
+
+
+    // Total dan bagian bawah struk
+    receipt.push(
+
+        {
+            type: "divider"
+        },
+
+        {
+            type: "row",
+            left: "TOTAL",
+            right:
+                total
+                    .replace("Rp", "")
+                    .trim(),
+            bold: true
+        },
+
+        {
+            type: "feed",
+            lines: 1
+        },
+
+        {
+            type: "text",
+            text: "Terima kasih sudah memesan",
+            align: "center"
+        },
+
+        {
+            type: "text",
+            text: "Kopsim - Kopi Simpang",
+            align: "center"
+        },
+
+        {
+            type: "feed",
+            lines: 3
+        }
+
+    );
+
+
+    // Kirim ke Cleanter
+    try {
+
+        const response = await fetch(
+            "http://localhost:9100/print",
+            {
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+                    cut: true,
+                    content: receipt
+                })
+            }
+        );
+
+
+        const result = await response.json();
+
+
+        if (response.ok) {
+
+            alert("Pesanan berhasil dicetak! 🖨️");
+
+            console.log("Print berhasil:", result);
+
+        } else {
+
+            alert(
+                "Gagal mencetak: " +
+                (result.error || "Printer bermasalah")
+            );
+
+            console.error(result);
+
+        }
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert(
+            "Tidak dapat terhubung ke Cleanter.\n\n" +
+            "Pastikan Cleanter aktif dan printer EP5859 terhubung."
+        );
+
+    }
 
 }
+
 
 
 /* =========================
