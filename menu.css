@@ -612,7 +612,7 @@
         }
 
         .print-btn {
-            background: #000;
+            background: var(--primary);
             color: #fff;
         }
 
@@ -646,19 +646,19 @@
                 visibility: hidden;
             }
 
-            .receipt-container,
-            .receipt-container * {
+            .receipt,
+            .receipt * {
                 visibility: visible;
             }
 
-            .receipt-container {
+            .receipt {
                 position: absolute;
 
                 left: 0;
                 top: 0;
 
                 width: 58mm;
-                height: auto;
+                height: 115mm;
 
                 display: block;
 
