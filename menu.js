@@ -1,100 +1,100 @@
 
-        /* =========================
-           DATA KERANJANG
-        ========================= */
+/* =========================
+   DATA KERANJANG
+========================= */
 
-        let cart = [];
-
-
-        /* =========================
-           FORMAT RUPIAH
-        ========================= */
-
-        function formatRupiah(number) {
-
-            return new Intl.NumberFormat('id-ID', {
-                style: 'currency',
-                currency: 'IDR',
-                minimumFractionDigits: 0
-            }).format(number);
-
-        }
+let cart = [];
 
 
-        /* =========================
-           TAMBAH KE KERANJANG
-        ========================= */
+/* =========================
+   FORMAT RUPIAH
+========================= */
 
-        function addToCart(name, price) {
+function formatRupiah(number) {
 
-            const existingItem = cart.find(
-                item => item.name === name
-            );
+    return new Intl.NumberFormat('id-ID', {
+        style: 'currency',
+        currency: 'IDR',
+        minimumFractionDigits: 0
+    }).format(number);
 
-            if (existingItem) {
-
-                existingItem.quantity++;
-
-            } else {
-
-                cart.push({
-                    name: name,
-                    price: price,
-                    quantity: 1
-                });
-
-            }
-
-            updateCart();
-
-            openCart();
-        }
+}
 
 
-        /* =========================
-           UPDATE CART
-        ========================= */
+/* =========================
+   TAMBAH KE KERANJANG
+========================= */
 
-        function updateCart() {
+function addToCart(name, price) {
 
-            const cartItems =
-                document.getElementById('cartItems');
+    const existingItem = cart.find(
+        item => item.name === name
+    );
 
-            const cartCount =
-                document.getElementById('cartCount');
+    if (existingItem) {
 
-            const cartTotal =
-                document.getElementById('cartTotal');
+        existingItem.quantity++;
+
+    } else {
+
+        cart.push({
+            name: name,
+            price: price,
+            quantity: 1
+        });
+
+    }
+
+    updateCart();
+
+    openCart();
+}
 
 
-            cartItems.innerHTML = '';
+/* =========================
+   UPDATE CART
+========================= */
 
-            let total = 0;
-            let totalQuantity = 0;
+function updateCart() {
+
+    const cartItems =
+        document.getElementById('cartItems');
+
+    const cartCount =
+        document.getElementById('cartCount');
+
+    const cartTotal =
+        document.getElementById('cartTotal');
 
 
-            if (cart.length === 0) {
+    cartItems.innerHTML = '';
 
-                cartItems.innerHTML = `
+    let total = 0;
+    let totalQuantity = 0;
+
+
+    if (cart.length === 0) {
+
+        cartItems.innerHTML = `
                     <div class="empty-cart">
                         Belum ada pesanan.
                     </div>
                 `;
 
-            }
+    }
 
 
-            cart.forEach((item, index) => {
+    cart.forEach((item, index) => {
 
-                const itemTotal =
-                    item.price * item.quantity;
+        const itemTotal =
+            item.price * item.quantity;
 
-                total += itemTotal;
+        total += itemTotal;
 
-                totalQuantity += item.quantity;
+        totalQuantity += item.quantity;
 
 
-                cartItems.innerHTML += `
+        cartItems.innerHTML += `
 
                     <div class="cart-item">
 
@@ -132,168 +132,172 @@
 
                 `;
 
-            });
+    });
 
 
-            cartCount.textContent = totalQuantity;
+    cartCount.textContent = totalQuantity;
 
-            cartTotal.textContent =
-                formatRupiah(total);
+    cartTotal.textContent =
+        formatRupiah(total);
 
-        }
+}
 
 
-        /* =========================
-           TAMBAH JUMLAH
-        ========================= */
+/* =========================
+   TAMBAH JUMLAH
+========================= */
 
-        function increaseQuantity(index) {
+function increaseQuantity(index) {
 
-            cart[index].quantity++;
+    cart[index].quantity++;
 
-            updateCart();
+    updateCart();
 
-        }
+}
 
 
-        /* =========================
-           KURANG JUMLAH
-        ========================= */
+/* =========================
+   KURANG JUMLAH
+========================= */
 
-        function decreaseQuantity(index) {
+function decreaseQuantity(index) {
 
-            cart[index].quantity--;
+    cart[index].quantity--;
 
 
-            if (cart[index].quantity <= 0) {
+    if (cart[index].quantity <= 0) {
 
-                cart.splice(index, 1);
+        cart.splice(index, 1);
 
-            }
+    }
 
-            updateCart();
+    updateCart();
 
-        }
+}
 
 
-        /* =========================
-           BUKA CART
-        ========================= */
+/* =========================
+   BUKA CART
+========================= */
 
-        function openCart() {
+function openCart() {
 
-            document
-                .getElementById('cartPanel')
-                .classList.add('active');
+    document
+        .getElementById('cartPanel')
+        .classList.add('active');
 
-            document
-                .getElementById('overlay')
-                .classList.add('active');
+    document
+        .getElementById('overlay')
+        .classList.add('active');
 
-        }
+}
 
 
-        /* =========================
-           TUTUP CART
-        ========================= */
+/* =========================
+   TUTUP CART
+========================= */
 
-        function closeCart() {
+function closeCart() {
 
-            document
-                .getElementById('cartPanel')
-                .classList.remove('active');
+    document
+        .getElementById('cartPanel')
+        .classList.remove('active');
 
-            document
-                .getElementById('overlay')
-                .classList.remove('active');
+    document
+        .getElementById('overlay')
+        .classList.remove('active');
 
-        }
+}
 
 
-        /* =========================
-           BUAT PESANAN
-        ========================= */
+/* =========================
+   BUAT PESANAN
+========================= */
 
-        function createOrder() {
+function createOrder() {
 
-            if (cart.length === 0) {
+    if (cart.length === 0) {
 
-                alert('Silakan pilih menu terlebih dahulu.');
+        alert('Silakan pilih menu terlebih dahulu.');
 
-                return;
+        return;
 
-            }
+    }
 
 
-            const customerName =
-                document
-                    .getElementById('customerName')
-                    .value
-                    .trim();
+    const customerName =
+        document
+            .getElementById('customerName')
+            .value
+            .trim();
 
 
-            if (customerName === '') {
+    if (customerName === '') {
 
-                alert('Silakan masukkan nama pelanggan.');
+        alert('Silakan masukkan nama pelanggan.');
 
-                return;
+        return;
 
-            }
+    }
 
 
-            const orderNumber =
-                'KP-' +
-                Math.floor(
-                    1000 + Math.random() * 9000
-                );
+    const orderNumber =
+        'KP-' +
+        Math.floor(
+            1000 + Math.random() * 9000
+        );
 
 
-            const now = new Date();
+    // TANGGAL
+    const now = new Date();
 
 
-            const date =
-                now.toLocaleDateString('id-ID') +
-                ' ' +
-                now.toLocaleTimeString('id-ID', {
-                    hour: '2-digit',
-                    minute: '2-digit'
-                });
+    const date =
+        now.toLocaleDateString('id-ID') +
+        ' ' +
+        now.toLocaleTimeString('id-ID', {
+            hour: '2-digit',
+            minute: '2-digit'
+        });
 
 
-            document
-                .getElementById('receiptNumber')
-                .textContent = orderNumber;
+    document
+        .getElementById('receiptNumber')
+        .textContent = orderNumber;
 
 
-            document
-                .getElementById('receiptDate')
-                .textContent = date;
+    document
+        .getElementById('receiptDate')
+        .textContent = date;
 
 
-            document
-                .getElementById('receiptCustomer')
-                .textContent = customerName;
+    document
+        .getElementById('receiptCustomer')
+        .textContent = customerName;
 
 
-            const receiptItems =
-                document.getElementById('receiptItems');
+    /* =========================
+   ITEM PESANAN
+========================= */
+    const receiptItems =
+        document.getElementById('receiptItems');
 
 
-            receiptItems.innerHTML = '';
+    receiptItems.innerHTML = '';
 
 
-            let total = 0;
+    let total = 0;
 
 
-            cart.forEach(item => {
+    cart.forEach(item => {
 
-                const itemTotal =
-                    item.price * item.quantity;
+        const itemTotal =
+            item.price * item.quantity;
 
-                total += itemTotal;
+        total += itemTotal;
 
 
-                receiptItems.innerHTML += `
+        receiptItems.innerHTML += `
 
                     <div class="receipt-item">
 
@@ -310,59 +314,59 @@
 
                 `;
 
-            });
+    });
 
 
-            document
-                .getElementById('receiptTotal')
-                .textContent =
-                formatRupiah(total);
+    document
+        .getElementById('receiptTotal')
+        .textContent =
+        formatRupiah(total);
 
 
-            closeCart();
+    closeCart();
 
 
-            document
-                .getElementById('receiptContainer')
-                .classList.add('active');
+    document
+        .getElementById('receiptContainer')
+        .classList.add('active');
 
-        }
-
-
-        /* =========================
-           CETAK
-        ========================= */
-
-        function printReceipt() {
-
-            window.print();
-
-        }
+}
 
 
-        /* =========================
-           TUTUP RECEIPT
-        ========================= */
+/* =========================
+   CETAK
+========================= */
 
-        function closeReceipt() {
+function printReceipt() {
 
-            document
-                .getElementById('receiptContainer')
-                .classList.remove('active');
+    printReceipt()
 
-            cart = [];
-
-            document
-                .getElementById('customerName')
-                .value = '';
-
-            updateCart();
-
-        }
+}
 
 
-        /* =========================
-           INITIAL
-        ========================= */
+/* =========================
+   TUTUP RECEIPT
+========================= */
 
-        updateCart();
+function closeReceipt() {
+
+    document
+        .getElementById('receiptContainer')
+        .classList.remove('active');
+
+    cart = [];
+
+    document
+        .getElementById('customerName')
+        .value = '';
+
+    updateCart();
+
+}
+
+
+/* =========================
+   INITIAL
+========================= */
+
+updateCart();
