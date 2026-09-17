@@ -339,7 +339,23 @@ function createOrder() {
 
 async function printReceipt() {
 
+    // Ambil data dari struk
+    const customer =
+        document.getElementById("receiptCustomer").textContent || "Pelanggan";
+
+    const orderNumber =
+        document.getElementById("receiptNumber").textContent || "-";
+
+    const orderDate =
+        document.getElementById("receiptDate").textContent || "-";
+
+    const total =
+        document.getElementById("receiptTotal").textContent || "Rp0";
+
+
+    // Buat isi struk
     const receipt = [
+
         {
             type: "text",
             text: "KOPSIM",
@@ -351,7 +367,19 @@ async function printReceipt() {
         {
             type: "text",
             text: "KOPI SIMPANG",
+            align: "center",
+            bold: true
+        },
+
+        {
+            type: "text",
+            text: "Order Sheet",
             align: "center"
+        },
+
+        {
+            type: "feed",
+            lines: 1
         },
 
         {
@@ -360,7 +388,78 @@ async function printReceipt() {
 
         {
             type: "text",
-            text: "TEST PESANAN",
+            text: "No. Pesanan : " + orderNumber
+        },
+
+        {
+            type: "text",
+            text: "Tanggal     : " + orderDate
+        },
+
+        {
+            type: "text",
+            text: "Nama        : " + customer
+        },
+
+        {
+            type: "divider"
+        }
+    ];
+
+
+    // Masukkan semua barang dari cart
+    cart.forEach(item => {
+
+        const subtotal =
+            item.price * item.quantity;
+
+        receipt.push({
+
+            type: "row",
+
+            left:
+                item.name + " x" + item.quantity,
+
+            right:
+                formatRupiah(subtotal)
+                    .replace("Rp", "")
+                    .trim()
+        });
+
+    });
+
+
+    // Total dan bagian bawah struk
+    receipt.push(
+
+        {
+            type: "divider"
+        },
+
+        {
+            type: "row",
+            left: "TOTAL",
+            right:
+                total
+                    .replace("Rp", "")
+                    .trim(),
+            bold: true
+        },
+
+        {
+            type: "feed",
+            lines: 1
+        },
+
+        {
+            type: "text",
+            text: "Terima kasih sudah memesan",
+            align: "center"
+        },
+
+        {
+            type: "text",
+            text: "Kopsim - Kopi Simpang",
             align: "center"
         },
 
@@ -368,17 +467,22 @@ async function printReceipt() {
             type: "feed",
             lines: 3
         }
-    ];
 
+    );
+
+
+    // Kirim ke Cleanter
     try {
 
         const response = await fetch(
             "http://localhost:9100/print",
             {
                 method: "POST",
+
                 headers: {
                     "Content-Type": "application/json"
                 },
+
                 body: JSON.stringify({
                     cut: true,
                     content: receipt
@@ -386,32 +490,38 @@ async function printReceipt() {
             }
         );
 
+
         const result = await response.json();
 
-        console.log("Cleanter:", result);
 
         if (response.ok) {
 
-            alert("Perintah cetak berhasil dikirim 🖨️");
+            alert("Pesanan berhasil dicetak! 🖨️");
+
+            console.log("Print berhasil:", result);
 
         } else {
 
             alert(
-                "Cleanter menolak cetak:\n" +
-                (result.error || "Tidak diketahui")
+                "Gagal mencetak: " +
+                (result.error || "Printer bermasalah")
             );
+
+            console.error(result);
 
         }
 
     } catch (error) {
 
-        console.error("PRINT ERROR:", error);
+        console.error(error);
 
         alert(
-            "Website tidak bisa menghubungi Cleanter.\n\n" +
-            error.message
+            "Tidak dapat terhubung ke Cleanter.\n\n" +
+            "Pastikan Cleanter aktif dan printer EP5859 terhubung."
         );
+
     }
+
 }
 
 

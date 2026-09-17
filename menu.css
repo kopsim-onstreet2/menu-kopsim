@@ -108,6 +108,12 @@
         .title h1 {
             color: var(--text);
             margin-bottom: 8px;
+            font-size: 30px;
+            font-weight: bold;
+        }
+        .title h2 {
+            font-weight: bold;
+            font-size: 50px;
         }
 
         .title p {
@@ -658,7 +664,7 @@
                 top: 0;
 
                 width: 58mm;
-                height: 115mm;
+                height: auto;
 
                 display: block;
 
