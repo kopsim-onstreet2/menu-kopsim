@@ -111,6 +111,7 @@
             font-size: 30px;
             font-weight: bold;
         }
+
         .title h2 {
             font-weight: bold;
             font-size: 50px;
@@ -626,6 +627,40 @@
             background: #ddd;
             color: #000;
         }
+
+
+        footer {
+            background: var(--primary-light);
+            border-top: var(--border);
+            padding: 30px;
+            text-align: center;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        footer .logo {
+            font-weight: bold;
+        }
+
+        .logo-coffe {
+            display: flex;
+            gap: 70px;
+            justify-content: center;
+            margin-top: 15px;
+
+            border-top: 3px solid var(--primary);
+            padding:8px;
+        }
+
+        .logo-isi {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            text-align: left;
+        }
+
 
 
         /* =========================
